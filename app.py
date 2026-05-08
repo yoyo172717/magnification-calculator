@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 
-bioscope = Flask(__name__)
+# IMPORTANT: must be named "app" for Vercel detection
+app = Flask(__name__)
 
 
 # Normalize incoming measurements into millimetres
@@ -27,12 +28,12 @@ def reshape_from_mm(base_span, target_tag):
     return base_span
 
 
-@bioscope.route("/")
+@app.route("/")
 def dashboard():
     return render_template("index.html")
 
 
-@bioscope.route("/calculate", methods=["POST"])
+@app.route("/calculate", methods=["POST"])
 def resolve_specimen_scale():
 
     payload = request.get_json()
@@ -64,5 +65,6 @@ def resolve_specimen_scale():
     })
 
 
+# Only runs locally, ignored by Vercel/Render
 if __name__ == "__main__":
-    bioscope.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
