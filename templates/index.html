@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ATLAS BioScale</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="shell">
+
+        <div class="panel">
+
+            <div class="brand-mark">
+                ATLAS BioScale
+            </div>
+
+            <h1>
+                Organism Size Calculator
+            </h1>
+
+            <p class="subtitle">
+                Determine true specimen dimensions from microscope magnification.
+            </p>
+
+
+            <!-- Image Measurement -->
+            <label>
+                Image Measurement
+            </label>
+
+            <div class="fusion-input">
+
+                <input type="number"
+                       id="specimenProjection"
+                       placeholder="e.g. 5000">
+
+                <select id="projectionScale">
+
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="um">µm</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Magnification -->
+            <label>
+                Magnification
+            </label>
+
+            <input type="number"
+                   id="opticZoom"
+                   placeholder="e.g. 400">
+
+
+            <!-- Output Unit -->
+            <label>
+                Output Unit
+            </label>
+
+            <select id="exportScale">
+
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="um">µm</option>
+
+            </select>
+
+
+            <!-- CTA -->
+            <button onclick="computeSpecimenScale()">
+
+                Calculate Actual Size
+
+            </button>
+
+
+            <!-- Output -->
+            <div class="answer-zone">
+
+                <div class="answer-label">
+                    Actual Organism Size
+                </div>
+
+                <div id="bioscopeResult">
+
+                    --
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
